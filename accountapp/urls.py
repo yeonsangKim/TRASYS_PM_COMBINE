@@ -1,7 +1,12 @@
 from django.urls import path
 from . import views
+from .views import accountcreateview
+
+app_name = "accountapp"
+
 urlpatterns = [
-    path('create/', views.create, name='create'),
-    path('location/', views.location, name='location'),
-    path('data/', views.data, name='data')
+    path('', views.main, name='main'),
+
+    path('create/', accountcreateview.as_view(), name='create')
+
 ]
