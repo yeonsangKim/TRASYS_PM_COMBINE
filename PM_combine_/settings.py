@@ -52,7 +52,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'accountapp',
-    'map'
+    'locationapp',
+    'usageapp',
+    'bootstrap4',
 ]
 
 MIDDLEWARE = [
@@ -93,7 +95,7 @@ WSGI_APPLICATION = 'PM_combine_.wsgi.application'
 DATABASES = {
      'default': {
          'ENGINE': 'django.db.backends.mysql',
-         'NAME': 'kim',
+         'NAME': 'KIM',
          'USER':'root',
          'PASSWORD':'1234',
          'HOST':'localhost',
@@ -152,5 +154,5 @@ STATICFILES_DIRS=[
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-LOGIN_REDIRECT_URL = reverse_lazy('map:main')
-LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:main')
+LOGIN_REDIRECT_URL = reverse_lazy('locationapp:main')
+LOGOUT_REDIRECT_URL = reverse_lazy('accountapp:login')
