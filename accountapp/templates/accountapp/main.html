@@ -2,7 +2,11 @@
 
 {% block content %}
     <section class="login-form">
-        <h1>메인</h1>
+        <h1>
+            <a href="{% url 'accountapp:login' %}">
+                <img src="https://mail.google.com/mail/u/0?ui=2&ik=13c809f02c&attid=0.1&permmsgid=msg-a:r8706416756056232514&th=17d2dbb5c6a7f684&view=att&disp=safe&realattid=f_kw3gpr9e0" alt="main">
+            </a>
+        </h1>
         <form method="post">
             {% csrf_token %}
             <div class="int-area">
@@ -24,8 +28,5 @@
                     <button type="submit">회원가입</button>
                 </div>
             </a>
-        <div class="caption">
-            <a href="">암호를 분실하셨나요?</a>
-        </div>
     </section>
 {% endblock %}
