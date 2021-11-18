@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'locationapp',
     'usageapp',
     'bootstrap4',
+    'rest_framework',
 ]
 
 MIDDLEWARE = [
