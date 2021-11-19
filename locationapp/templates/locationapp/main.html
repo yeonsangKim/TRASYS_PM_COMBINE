@@ -59,6 +59,7 @@
     }).done(function (data) {
         console.log(data);
 
+        var markers = [];
         for (var  idx = 0; idx < data.length; idx++) {
             {#console.log("마커찍을 좌표:",  data[idx].latitude,data[idx].longitude)}#}
             var markerPosition = new kakao.maps.LatLng(data[idx].latitude, data[idx].longitude);
@@ -69,19 +70,38 @@
 
             marker.setMap(map);
 
+            var iwContent = '<div style="padding:5px;">'
+                                + data[idx].photo + '<br/>'
+                                + data[idx].address +
+                            '</div>';
+
+            var infowindow = new kakao.maps.InfoWindow({
+                position : markerPosition,
+                content : iwContent
+            });
+            infowindow.open(map, marker);
+            markers.push(marker);
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+        }
+        clusterer.addMarkers(markers);
+
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
         }
     });
-
-
-
-
-
-
-
-
-
-
-
+    {#커스텀 오버레이로 만든거는 카톡으로 보내놨어요. 커스텀 오버레이는 도저히 답이없네요.#}
+    {#지금 위에 코드는 인포 윈도우로 영상보고 그대로 따라서 한건데 주차장 데이터 주소가 겹치는거도 있고#}
+    {#포토는 해보면 알겠지만 주소링크가 그대로 떠요.#}
+    {#나름 한다고는 해봤는데 더이상은 손 못대겠네요.#}
 </script>
 </body>
 </html>
