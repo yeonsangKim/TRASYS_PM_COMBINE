@@ -4,8 +4,9 @@
     <meta charset="UTF-8">
     <title>Usage</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" href="mystyle.css">
+    <link rel="stylesheet" type="text/css">
     <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://code.jquery.com/jquery-latest.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -38,60 +39,69 @@
         </div>
     </div>
     <script>
-        let mychartone = document.getElementById('mychartone').getContext('2d');
-        let mycharttwo = document.getElementById('mycharttwo').getContext('2d');
+        $.ajax({
+            url : "http://127.0.0.1:8000/usage/json_chart/",
+            dataType: "json"
+        }).done(function (data) {
+            console.log(data);
 
-        let data1 = [100, 200, 300, 400, 500, 600, 700];
-        let colors1 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF'];
-        let barChart = new Chart(mychartone, {
-            type : 'bar',
-            data : {
-                labels : ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일',' 일요일'],
-                datasets : [{
-                    label : '요일별 색상',
-                    data : data1,
-                    backgroundColor: colors1
-                }]
-            },
-            options: {
-                title: {
-                    text: '요일별사용량',
-                    display: true,
-                    fontSize : 50,
-                    fontColor : '#9E9C9CFF'
-                },
-                legend: {
-                    display: true,
-                    position : 'bottom',
-                },
-            }
-        });
-        let data2 = [100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
-        let colors2 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF', 'teal', 'cyan', 'gray', 'black'];
-        let barCharttwo = new Chart(mycharttwo, {
-            type : 'pie',
-            data : {
-                labels : ['1월', '2월', '3월', '4월', '5월', '6월',' 7월', '8월', '9월','10월','11월', '12월'],
-                datasets : [{
-                    label : '월별 색상',
-                    data : data2,
-                    backgroundColor : colors2
-                }]
-            },
-            options: {
-                title: {
-                    text: '월별사용량',
-                    display: true,
-                    fontSize : 50,
-                    fontColor : '#9E9C9CFF'
-                },
-                legend: {
-                    display: true,
-                    position: 'bottom'
-                }
-            }
-        });
+            for (var  idx = 0; idx < data.length; idx++) {
 
+                let mychartone = document.getElementById('mychartone').getContext('2d');
+                let mycharttwo = document.getElementById('mycharttwo').getContext('2d');
+
+                let data1 = data[idx].latitude;               // <-(수기로 데이터를 기입하면 이상없이 실행됨) [100, 200, 300, 400, 500, 600, 700];
+                let colors1 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF'];
+                let barChart = new Chart(mychartone, {
+                    type: 'bar',
+                    data: {
+                        labels: ['월요일', '화요일', '수요일', '목요일', '금요일', '토요일', ' 일요일'],
+                        datasets: [{
+                            label: '요일별 색상',
+                            data: data1,
+                            backgroundColor: colors1
+                        }]
+                    },
+                    options: {
+                        title: {
+                            text: '요일별사용량',
+                            display: true,
+                            fontSize: 50,
+                            fontColor: '#9E9C9CFF'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom',
+                        },
+                    }
+                });
+                let data2 = data[idx].latitude;    //[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
+                let colors2 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF', 'teal', 'cyan', 'gray', 'black'];
+                let barCharttwo = new Chart(mycharttwo, {
+                    type: 'pie',
+                    data: {
+                        labels: ['1월', '2월', '3월', '4월', '5월', '6월', ' 7월', '8월', '9월', '10월', '11월', '12월'],
+                        datasets: [{
+                            label: '월별 색상',
+                            data: data2,
+                            backgroundColor: colors2
+                        }]
+                    },
+                    options: {
+                        title: {
+                            text: '월별사용량',
+                            display: true,
+                            fontSize: 50,
+                            fontColor: '#9E9C9CFF'
+                        },
+                        legend: {
+                            display: true,
+                            position: 'bottom'
+                        }
+                    }
+                })
+            }
+        })
     </script>
 </body>
 </html>
