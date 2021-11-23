@@ -24,6 +24,11 @@
             </div>
         </div>
     </nav>
+    <style>
+        b{
+            color : brown;
+        }
+    </style>
 </head>
 <body>
 <div id="map" style="width:100%;height:100vh;"></div>
@@ -48,6 +53,7 @@
         averageCenter: true, // 클러스터에 포함된 마커들의 평균 위치를 클러스터 마커 위치로 설정
         minLevel: 10 // 클러스터 할 최소 지도 레벨
     });
+    var markers = [];
 
 
 
@@ -59,20 +65,45 @@
     }).done(function (data) {
         console.log(data);
 
-        for (var  idx = 0; idx < data.length; idx++) {
-            {#console.log("마커찍을 좌표:",  data[idx].latitude,data[idx].longitude)}#}
-            var markerPosition = new kakao.maps.LatLng(data[idx].latitude, data[idx].longitude);
+       for (var  idx = 0; idx < data.length; idx++) {
 
             var marker = new kakao.maps.Marker({
-                position: markerPosition
+                position:  new kakao.maps.LatLng(data[idx].latitude, data[idx].longitude),
+                map:map
             });
 
-            marker.setMap(map);
+            let able=data[idx].talang+data[idx].beam+data[idx].deer+data[idx].gcooter
+            let iwContent = '<div  style="padding:5px;width:600px; height: auto; text-align: left; background-color: antiquewhite">'+'<b>주소 :</b> '+data[idx].address+'</br>'+'<b>가용가능한 pm : </b>'+able+'</br>'+
+                '<b>gcooter :</b>'+data[idx].gcooter+'</br>'+'<b>talang :</b>'+data[idx].talang+'</br>'+'<b>beam :</b>'+data[idx].beam+'</br>'+'<b>deer :</b>'+data[idx].deer
+                '</div>';
 
+
+
+
+            var infowindow = new kakao.maps.InfoWindow({
+                content : iwContent
+            });
+
+            kakao.maps.event.addListener(marker, 'mouseover', makeOverListener(map, marker, infowindow));
+            kakao.maps.event.addListener(marker, 'mouseout', makeOutListener(infowindow));
+            markers.push(marker);
         }
-    });
+        clusterer.addMarkers(markers);
 
 
+
+        function makeOverListener(map, marker, infowindow) {
+            return function() {
+                infowindow.open(map, marker);
+            };
+        }
+
+        function makeOutListener(infowindow) {
+            return function() {
+                infowindow.close();
+            };
+        }});
+//data[idx].address
 
 
 
