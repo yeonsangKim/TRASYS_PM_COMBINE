@@ -1,3 +1,10 @@
+# This is an auto-generated Django model module.
+# You'll have to do the following manually to clean this up:
+#   * Rearrange models' order
+#   * Make sure each model has one field with primary_key=True
+#   * Make sure each ForeignKey and OneToOneField has `on_delete` set to the desired behavior
+#   * Remove `managed = False` lines if you wish to allow Django to create, modify, and delete the table
+# Feel free to rename the models, but don't rename db_table values or field names.
 from django.db import models
 
 
@@ -124,39 +131,73 @@ class DjangoSession(models.Model):
         db_table = 'django_session'
 
 
-class NewTable(models.Model):
-    id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=45, blank=True, null=True)
-
-    class Meta:
-        managed = False
-        db_table = 'new_table'
-
-
 class Parking(models.Model):
     id = models.IntegerField(primary_key=True)
-    name = models.CharField(max_length=45, blank=True, null=True)
-    address = models.CharField(max_length=45, blank=True, null=True)
+    name = models.CharField(max_length=100, blank=True, null=True)
+    address = models.CharField(max_length=100, blank=True, null=True)
     latitude = models.FloatField(blank=True, null=True)
     longitude = models.FloatField(blank=True, null=True)
-    photo = models.CharField(max_length=75, blank=True, null=True)
+    photo = models.CharField(max_length=100, blank=True, null=True)
     gcooter = models.IntegerField(blank=True, null=True)
     deer = models.IntegerField(blank=True, null=True)
     beam = models.IntegerField(blank=True, null=True)
     talang = models.IntegerField(blank=True, null=True)
     kickboard = models.IntegerField(blank=True, null=True)
     bicycle = models.IntegerField(blank=True, null=True)
+    monday = models.IntegerField(db_column='Monday', blank=True, null=True)  # Field name made lowercase.
+    tuesday = models.IntegerField(db_column='Tuesday', blank=True, null=True)  # Field name made lowercase.
+    wednesday = models.IntegerField(db_column='Wednesday', blank=True, null=True)  # Field name made lowercase.
+    thursday = models.IntegerField(db_column='Thursday', blank=True, null=True)  # Field name made lowercase.
+    friday = models.IntegerField(db_column='Friday', blank=True, null=True)  # Field name made lowercase.
+    saturday = models.IntegerField(db_column='Saturday', blank=True, null=True)  # Field name made lowercase.
+    sunday = models.IntegerField(db_column='Sunday', blank=True, null=True)  # Field name made lowercase.
+    mon_avg = models.FloatField(blank=True, null=True)
+    tus_avg = models.FloatField(blank=True, null=True)
+    wed_avg = models.FloatField(blank=True, null=True)
+    thr_avg = models.FloatField(blank=True, null=True)
+    fri_avg = models.FloatField(blank=True, null=True)
+    sat_avg = models.FloatField(blank=True, null=True)
+    sun_avg = models.FloatField(blank=True, null=True)
+    ja = models.IntegerField(blank=True, null=True)
+    fe = models.IntegerField(blank=True, null=True)
+    mar = models.IntegerField(blank=True, null=True)
+    apr = models.IntegerField(blank=True, null=True)
+    may = models.IntegerField(blank=True, null=True)
+    jun = models.IntegerField(blank=True, null=True)
+    jul = models.IntegerField(blank=True, null=True)
+    aug = models.IntegerField(blank=True, null=True)
+    sep = models.IntegerField(blank=True, null=True)
+    oct = models.IntegerField(blank=True, null=True)
+    nov = models.IntegerField(blank=True, null=True)
+    dec = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
         db_table = 'parking'
 
 
-class Pm(models.Model):
-    id = models.CharField(primary_key=True, max_length=20)
-    name = models.CharField(max_length=45, blank=True, null=True)
-    type = models.CharField(max_length=45, blank=True, null=True)
+class Usage(models.Model):
+    id = models.IntegerField(primary_key=True)
+    mon_avg = models.FloatField(blank=True, null=True)
+    tus_avg = models.FloatField(blank=True, null=True)
+    wed_avg = models.FloatField(blank=True, null=True)
+    thr_avg = models.FloatField(blank=True, null=True)
+    fri_avg = models.FloatField(blank=True, null=True)
+    sat_avg = models.FloatField(blank=True, null=True)
+    sun_avg = models.FloatField(blank=True, null=True)
+    ja = models.IntegerField(blank=True, null=True)
+    fe = models.IntegerField(blank=True, null=True)
+    mar = models.IntegerField(blank=True, null=True)
+    apr = models.IntegerField(blank=True, null=True)
+    may = models.IntegerField(blank=True, null=True)
+    jun = models.IntegerField(blank=True, null=True)
+    jul = models.IntegerField(blank=True, null=True)
+    aug = models.IntegerField(blank=True, null=True)
+    sep = models.IntegerField(blank=True, null=True)
+    oct = models.IntegerField(blank=True, null=True)
+    nov = models.IntegerField(blank=True, null=True)
+    dec = models.IntegerField(blank=True, null=True)
 
     class Meta:
         managed = False
-        db_table = 'pm'
+        db_table = 'usage'

@@ -50,7 +50,9 @@
                 let mychartone = document.getElementById('mychartone').getContext('2d');
                 let mycharttwo = document.getElementById('mycharttwo').getContext('2d');
 
-                let data1 = data[idx].latitude;               // <-(수기로 데이터를 기입하면 이상없이 실행됨) [100, 200, 300, 400, 500, 600, 700];
+
+                let data1 = [data[0].mon_avg,data[0].tus_avg,data[0].wed_avg,data[0].thr_avg,data[0].fri_avg,data[0].sat_avg,data[0].sun_avg];
+                //console.log('데이터',data1)
                 let colors1 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF'];
                 let barChart = new Chart(mychartone, {
                     type: 'bar',
@@ -75,9 +77,11 @@
                         },
                     }
                 });
-                let data2 = data[idx].latitude;    //[100, 200, 300, 400, 500, 600, 700, 800, 900, 1000, 1100, 1200];
+
+                let data2 = [data[0].ja,data[0].fe,data[0].mar,data[0].apr,data[0].may,data[0].jun,data[0].jul,data[0].aug,data[0].sep,data[0].oct,data[0].nov,data[0].dec];
+                //console.log('파이차트 데이터',typeof(data2));
                 let colors2 = ['red', 'orange', 'yellow', 'green', 'skyblue', 'blue', 'purple', '#D600FCFF', 'teal', 'cyan', 'gray', 'black'];
-                let barCharttwo = new Chart(mycharttwo, {
+                let pieCharttwo = new Chart(mycharttwo, {
                     type: 'pie',
                     data: {
                         labels: ['1월', '2월', '3월', '4월', '5월', '6월', ' 7월', '8월', '9월', '10월', '11월', '12월'],
@@ -101,7 +105,7 @@
                     }
                 })
             }
-        })
+        });
     </script>
 </body>
 </html>
