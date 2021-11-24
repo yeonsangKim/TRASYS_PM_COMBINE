@@ -1,5 +1,6 @@
 asgiref==3.4.1
 beautifulsoup4==4.10.0
+bootstrap4==0.1.0
 click==8.0.3
 colorama==0.4.4
 decorator==5.1.0
