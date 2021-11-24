@@ -58,7 +58,7 @@ INSTALLED_APPS = [
     'bootstrap4',
     'rest_framework',
     'environ'
-]
+    ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
