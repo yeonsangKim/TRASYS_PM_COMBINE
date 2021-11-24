@@ -56,6 +56,7 @@ INSTALLED_APPS = [
     'usageapp',
     'bootstrap4',
     'rest_framework',
+    'environ'
 ]
 
 MIDDLEWARE = [
